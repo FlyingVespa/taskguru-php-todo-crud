@@ -5,8 +5,11 @@ $servername = 'localhost:3307';
 $username = 'flyingvespa';
 $password = 'password';
 $databasename = 'crud';
-
-$db = mysqli_connect($servername, $username, $password, $databasename);
+try {
+    $db = mysqli_connect($servername, $username, $password, $databasename);
+} catch (PDOException $err) {
+    die($err->getMessage());
+}
 
 
 // initialize variables
@@ -14,6 +17,7 @@ $name = "";
 $task = "";
 $date = "";
 $id = 0;
+
 $update = false;
 
 
@@ -24,7 +28,7 @@ if (isset($_POST['save'])) {
     $date = $_POST['date'];
 
     mysqli_query($db, "INSERT INTO info (name, task) VALUES ('$name', '$task')");
-    $_SESSION['message'] = "Task saved";
+    $_SESSION['msgupdate'] = "Task Has Been Added";
     header('location: index.php');
 }
 
@@ -36,15 +40,15 @@ if (isset($_POST['update'])) {
     $date = $_POST['date'];
 
     mysqli_query($db, "UPDATE info SET name='$name', task='$task' WHERE id=$id");
-    $_SESSION['message'] = "Task updated!";
+    $_SESSION['msgupdate'] = "Task <b>$name</b> Has Been Updated!";
     header('location: index.php');
 }
+
 
 // delete
 if (isset($_GET['del'])) {
     $id = $_GET['del'];
     mysqli_query($db, "DELETE FROM info WHERE id=$id");
-    $_SESSION['msgd'] =
-        "<script>alert('Task Deleted');</script>";;
+    $_SESSION['msgdelete'] = "Task $name had been deleted!";
     header('location: index.php');
 }

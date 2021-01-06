@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+/*Index 
+
+section 1
+--> html/body/title
+section 2
+--> form
+section 3
+--> output (data)
+section 4
+--> add/edit/delete buttons
+section 5
+--> social buttons
+section 6
+--> scroll
+section 7
+--> @media screens
+*/
+/*---------------------- SECTION 1 --------------------*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	width: 100%;
+	height: 100vh;
+}
+
+form {
+	width: 100%;
+	margin: auto;
+	padding: 10px 50px 10px;
+	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 1);
+	border-radius: 5px;
+	background: #f1f1f1;
+}
+
+body {
+	background: #333333;
+}
+
+.wrapper {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	flex-direction: column;
+	display: flex;
+	background: #f2f2f2;
+	width: 600px;
+	border-radius: 5px;
+	padding: 20px;
+	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 1);
+}
+
+h1 {
+	font-size: 5rem;
+	text-align: center;
+	font-family: 'Righteous', cursive;
+	margin: 0;
+	padding: 0;
+}
+hr {
+	margin: 1px;
+	padding: 0;
+	color: goldenrod;
+}
+h4 {
+	padding: 0;
+	margin: 0;
+	font-size: 20px;
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 5px;
+}
+
+.msg {
+	margin: 10px auto;
+	padding: 10px;
+	border-radius: 5px;
+	color: #3c763d;
+	background: #dff0d8;
+	border: 1px solid #3c763d;
+	max-width: 500px;
+	text-align: center;
+}
+
+/*---------------------- SECTION 2 --------------------*/
+
+.input-group {
+	margin: 10px 0px 10px 0px;
+}
+textarea {
+	padding: 10px;
+	place-items: center;
+	align-items: center;
+	place-content: center;
+	align-content: center;
+	position: relative;
+	width: 100%;
+	height: 100px;
+	resize: none;
+}
+input {
+	padding: 10px;
+	position: relative;
+	width: 100%;
+}
+
+.form-wrapper {
+	margin: 30px;
+}
+
+.btn-add,
+.btn-update {
+	text-decoration: none;
+	padding: 10px;
+	font-size: 15px;
+	color: white;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 1);
+}
+.btn-add {
+	background: goldenrod;
+	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 1);
+}
+.btn-add:active {
+	transform: translateY(4px);
+	border: none;
+}
+
+.btn-update {
+	background: rgb(199, 143, 40);
+}
+
+/*---------------------- SECTION 3 --------------------*/
+
+.container {
+	display: flex;
+	position: relative;
+	margin-top: 7px;
+	width: 100%;
+	min-height: 100px;
+	max-height: 200px;
+	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 1);
+	transition: 0.55s linear;
+	border-radius: 0 15px 0 15px;
+	padding-left: 10px;
+	overflow: hidden;
+	background: #f2f2f2;
+}
+
+#input-name {
+	font-size: 1rem;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#input-task {
+	font-size: 14px;
+}
+
+.container #input-date {
+	display: inline-block;
+	text-align: center;
+	font-size: 12px;
+	color: grey;
+}
+/*---------------------- SECTION 4 --------------------*/
+.del_btn {
+	background: maroon;
+}
+.edit_btn {
+	float: right;
+	background: goldenrod;
+}
+
+.button1,
+.button2 {
+	position: absolute;
+	right: -90px;
+	transition: 0.35s ease-in;
+}
+
+.button1 a,
+.button2 a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 70px;
+	color: white;
+	z-index: 1;
+	height: 100px;
+	text-decoration: none;
+}
+.container:hover .button1 {
+	right: 0;
+}
+
+.container:hover .button2 {
+	right: 70;
+}
+
+* {
+	font-family: tahoma;
+}
+/*---------------------- SECTION 5 --------------------*/
+.back-to-top {
+	position: fixed;
+	bottom: 55px;
+	right: 55px;
+	display: none;
+	height: 50px;
+	width: 50px;
+	background: goldenrod;
+	text-decoration: none;
+}
+#top {
+	position: fixed;
+	bottom: 20px;
+	left: 50px;
+	padding: 20px 15px;
+	border-radius: 0 15px 0 15px;
+	border: 0;
+	background: goldenrod;
+	color: #f2f2f2;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 18px;
+	cursor: pointer;
+	outline: none;
+	opacity: 0;
+	transition: 0.2s ease-out;
+}
+#top.show {
+	opacity: 1;
+}
+
+/*---------------------- SECTION 6 --------------------*/
+
+.middle {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	transform: translate(-10%, -10%);
+	text-align: center;
+	z-index: 99;
+}
+
+.btn {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background: #f1f1f1;
+	margin: 5px;
+	border-radius: 20%;
+	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.7);
+	color: #333333;
+	overflow: hidden;
+	position: relative;
+}
+
+.btn i {
+	line-height: 50px;
+	font-size: 26px;
+	transition: 0.2s linear;
+}
+
+.btn:hover i {
+	transform: scale(1.3);
+	color: #f1f1f1;
+}
+
+.btn::before {
+	content: '';
+	position: absolute;
+	height: 120%;
+	width: 120%;
+	background: goldenrod;
+	transform: rotate(45deg);
+	left: -110%;
+	top: 90%;
+}
+
+.btn:hover::before {
+	animation: aaa 0.7s 1;
+	top: -10%;
+	left: -10%;
+}
+
+@keyframes aaa {
+	0% {
+		top: -110%;
+		left: 90%;
+	}
+
+	50% {
+		top: 10%;
+		left: -30%;
+	}
+
+	100% {
+		top: -10%;
+		left: -10%;
+	}
+}
+footer {
+	height: 10%;
+	margin: 0;
+	padding: 10;
+}
+/*---------------------- SECTION 7 --------------------*/
+@media screen and (max-width: 375px) {
+	body {
+		background-color: rgb(24, 24, 26);
+		font-size: 12px;
+	}
+	h1 {
+		font-size: 3rem;
+	}
+
+	.wrapper {
+		width: 95%;
+	}
+	.container {
+		width: 100%;
+	}
+	form {
+		padding: 15px;
+	}
+	input {
+		margin-left: 0;
+		font-size: 12px;
+	}
+
+	/*social*/
+	.middle {
+		bottom: 10px;
+	}
+
+	.btn {
+		width: 50px;
+		height: 50px;
+	}
+	.btn i {
+		line-height: 28px;
+	}
+
+	/*Scroll*/
+	#top {
+		bottom: 0;
+		width: 100%;
+		padding: 10px 5px;
+		border-radius: 0px;
+		border: 0;
+		left: 0;
+	}
+	#top.show {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	body {
+		font-size: 12px;
+	}
+
+	h1 {
+		font-size: 3rem;
+	}
+
+	.wrapper {
+		width: 95%;
+	}
+	.container {
+		width: 100%;
+	}
+	form {
+		padding: 15px;
+	}
+	input {
+		margin-left: 0;
+		font-size: 12px;
+	}
+
+	/*social*/
+	.middle {
+		bottom: 10px;
+	}
+
+	.btn {
+		width: 50px;
+		height: 50px;
+	}
+	.btn i {
+		line-height: 28px;
+	}
+
+	/*Scroll*/
+	#top {
+		bottom: 0;
+		width: 100%;
+		padding: 10px 5px;
+		border-radius: 0px;
+		border: 0;
+		left: 0;
+	}
+	#top.show {
+		opacity: 1;
+	}
+}
