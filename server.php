@@ -5,12 +5,12 @@ $servername = 'localhost:3307';
 $username = 'flyingvespa';
 $password = 'password';
 $databasename = 'crud';
+
 try {
     $db = mysqli_connect($servername, $username, $password, $databasename);
 } catch (PDOException $err) {
     die($err->getMessage());
 }
-
 
 // initialize variables
 $name = "";
@@ -36,14 +36,14 @@ if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $task = $_POST['task'];
-    $date = $_POST['tdate'];
+    //date Function Get Current date and time in Year-Month-Day Hours:Mintues:Seconds
+    $date = date('Y-m-d h:m:s');
     $checkbox = $_POST['checkbox'];
 
     mysqli_query($db, "UPDATE info SET name='$name', task='$task', tdate='$date' WHERE id=$id");
     $_SESSION['msgupdate'] = "Task <b>$name</b> Has Been Updated!";
     header('location: index.php');
 }
-
 
 // delete
 if (isset($_GET['del'])) {
@@ -53,14 +53,3 @@ if (isset($_GET['del'])) {
     header('location: index.php');
 }
 
-if (isset($_POST['checkbox'])) {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $task = $_POST['task'];
-    $tdate = $_POST['tdate'];
-    $checkbox = $_POST['checkbox'];
-
-    mysqli_query($db, "UPDATE info SET name='$name', task='$task', checkbox='$checkbox' WHERE id=$id");
-    $_SESSION['msgupdate'] = "Task <b>$name</b> Has Been Completed!";
-    header('location: index.php');
-}

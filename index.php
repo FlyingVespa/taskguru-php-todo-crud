@@ -1,27 +1,29 @@
 <?php require 'server.php'; ?>
 
 <?php
+
+//Check Edit 
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $update = true;
     $record = mysqli_query($db, "SELECT * FROM info WHERE id=$id");
+    //Get Task From Info table to Edit Task
+    $get_task_data = mysqli_fetch_array($record);
+    $name = $get_task_data['name'];
+    $task = $get_task_data['task'];
+}
 
-    if (isset($_POST['edit'])) {
-        $n = mysqli_fetch_array($record);
-        $name = $n['name'];
-        $task = $n['task'];
-        $tdate = $n['tdate'];
-        if (!$n) {
-            die("Failed");
-        } else {
-            header("Location:index.php?edited");
-        }
-    }
+// Getting Search  data from server
+if (isset($_POST['search'])) {
+    $search = $_POST['search'];
+    $results = mysqli_query($db, "SELECT * FROM info WHERE name  LIKE '%" . $search . "%'");
+    // $result = mysqli_fetch_array($query);
+} else {
+    $results = mysqli_query($db, "SELECT * FROM info");
 }
 
 ?>
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,11 +48,30 @@ if (isset($_GET['edit'])) {
 </header>
 
 <body>
-    <?php $results = mysqli_query($db, "SELECT * FROM info"); ?>
     <div class="wrapper">
         <h1>TASKGURU</h1>
         <hr>
         <h4>by Helena Nel</h4>
+
+        <!-- Search Form for Search Task By Name -->
+        <div class="col-md-12 search mb-3">
+            <form action="index.php" method="POST">
+                <input class="form-control" type="text" placeholder="Search a task by  Name" value="<?php if (isset($search)) echo $search  ?>" name="search">
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4 float-right mt-3">
+                        <input class="form-control" type="submit" name="submit" value="Search">
+                        <?php
+
+                        if (isset($_POST['search'])) {
+                            echo "<a href='index.php' class='form-control float-left'>Reset</a>";
+                        }
+                        ?>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- End Search Form for Search Task By Name -->
         <form method="post" action="server.php">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="inputFields">
@@ -61,7 +82,7 @@ if (isset($_GET['edit'])) {
             <div class="input-group">
                 <span>Task Details</span>
                 <br>
-                <textarea type="text" name="task" value="<?php echo $task; ?>" placeholder="Enter details here (100 characters max)" maxlength="100" required></textarea>
+                <textarea type="text" name="task" placeholder="Enter details here (100 characters max)" maxlength="100" required><?php echo $task; ?></textarea>
             </div>
             <div class="input-group">
                 <?php if ($update == true) : ?>
@@ -82,17 +103,18 @@ if (isset($_GET['edit'])) {
 
         <?php while ($row = mysqli_fetch_array($results)) { ?>
             <div class="container">
+
                 <div class="input">
                     <span id="input-name"><?php echo $row['name']; ?></span>
                     <br>
                     <span id="input-task"> <?php echo $row['task']; ?></span>
                     <br>
                     <span id="input-date"> <?php echo $row['tdate']; ?></span>
-                   <!--- <?php if ($row['checkbox']) { ?>
-                        <input class="checkbox" type="checkbox" data-todo-id="<?php echo $row['checkbox']; ?>" checked />
+                    <?php if ($row['checkbox']) { ?>
+                        <input class="checkbox" type="checkbox" data-todo-id="<?php echo $row['id']; ?>" checked />
                     <?php } else { ?>
-                        <input class="checkbox" type="checkbox" data-todo-id="<?php echo $row['checkbox']; ?>" />
-                    <?php } ?> --->
+                        <input class="checkbox" type="checkbox" data-todo-id="<?php echo $row['id']; ?>" />
+                    <?php } ?>
                 </div>
                 <div class="button1">
                     <a href="index.php?edit=<?php echo $row['id']; ?>" class="edit_btn">
@@ -119,12 +141,10 @@ if (isset($_GET['edit'])) {
             x.style.display = "block";
         }
     }
-
-
     $(document).ready(function() {
         $(".checkbox").click(function(e) {
+            //Get Task id from Task Table using checkbox
             const id = $(this).attr('data-todo-id');
-
             $.post('check.php', {
                     id: id
                 },
@@ -133,8 +153,12 @@ if (isset($_GET['edit'])) {
                         const h2 = $(this).next();
                         if (data === '1') {
                             h2.removeClass('checked');
+                            // If Data Response id 1 means if checkbox is checked this alert will be show 
+                            alert('Task Status Change to Checked  Successfully');
                         } else {
                             h2.addClass('checked');
+                            // If Data Response id 0 means if checkbox is unchecked this alert will be show 
+                            alert('Task Status Change to uchecked  Successfully');
                         }
                     }
                 }
