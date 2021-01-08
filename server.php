@@ -20,7 +20,6 @@ $id = 0;
 
 $update = false;
 
-
 // save
 if (isset($_POST['save'])) {
     $name = $_POST['name'];
@@ -37,9 +36,10 @@ if (isset($_POST['update'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $task = $_POST['task'];
-    $date = $_POST['date'];
+    $date = $_POST['tdate'];
+    $checkbox = $_POST['checkbox'];
 
-    mysqli_query($db, "UPDATE info SET name='$name', task='$task' WHERE id=$id");
+    mysqli_query($db, "UPDATE info SET name='$name', task='$task', tdate='$date' WHERE id=$id");
     $_SESSION['msgupdate'] = "Task <b>$name</b> Has Been Updated!";
     header('location: index.php');
 }
@@ -50,5 +50,17 @@ if (isset($_GET['del'])) {
     $id = $_GET['del'];
     mysqli_query($db, "DELETE FROM info WHERE id=$id");
     $_SESSION['msgdelete'] = "Task $name had been deleted!";
+    header('location: index.php');
+}
+
+if (isset($_POST['checkbox'])) {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $task = $_POST['task'];
+    $tdate = $_POST['tdate'];
+    $checkbox = $_POST['checkbox'];
+
+    mysqli_query($db, "UPDATE info SET name='$name', task='$task', checkbox='$checkbox' WHERE id=$id");
+    $_SESSION['msgupdate'] = "Task <b>$name</b> Has Been Completed!";
     header('location: index.php');
 }

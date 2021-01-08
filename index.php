@@ -1,7 +1,6 @@
 <?php require 'server.php'; ?>
 
 <?php
-
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $update = true;
@@ -11,7 +10,7 @@ if (isset($_GET['edit'])) {
         $n = mysqli_fetch_array($record);
         $name = $n['name'];
         $task = $n['task'];
-        $date = $n['date'];
+        $tdate = $n['tdate'];
         if (!$n) {
             die("Failed");
         } else {
@@ -19,6 +18,7 @@ if (isset($_GET['edit'])) {
         }
     }
 }
+
 ?>
 <html>
 
@@ -66,7 +66,6 @@ if (isset($_GET['edit'])) {
             <div class="input-group">
                 <?php if ($update == true) : ?>
                     <button class="btn-update" type="submit" name="update">Update</button>
-                    <button class="btn" type="cancel" href="index.php">Update</button>
                 <?php else : ?>
                     <button class="btn-add" type="submit" name="save">Add Task</button>
                 <?php endif ?>
@@ -80,6 +79,7 @@ if (isset($_GET['edit'])) {
                 ?>
             </div>
         <?php endif ?>
+
         <?php while ($row = mysqli_fetch_array($results)) { ?>
             <div class="container">
                 <div class="input">
@@ -87,7 +87,12 @@ if (isset($_GET['edit'])) {
                     <br>
                     <span id="input-task"> <?php echo $row['task']; ?></span>
                     <br>
-                    <span id="input-date"> <?php echo $row['date']; ?></span>
+                    <span id="input-date"> <?php echo $row['tdate']; ?></span>
+                   <!--- <?php if ($row['checkbox']) { ?>
+                        <input class="checkbox" type="checkbox" data-todo-id="<?php echo $row['checkbox']; ?>" checked />
+                    <?php } else { ?>
+                        <input class="checkbox" type="checkbox" data-todo-id="<?php echo $row['checkbox']; ?>" />
+                    <?php } ?> --->
                 </div>
                 <div class="button1">
                     <a href="index.php?edit=<?php echo $row['id']; ?>" class="edit_btn">
@@ -114,6 +119,28 @@ if (isset($_GET['edit'])) {
             x.style.display = "block";
         }
     }
+
+
+    $(document).ready(function() {
+        $(".checkbox").click(function(e) {
+            const id = $(this).attr('data-todo-id');
+
+            $.post('check.php', {
+                    id: id
+                },
+                (data) => {
+                    if (data != 'error') {
+                        const h2 = $(this).next();
+                        if (data === '1') {
+                            h2.removeClass('checked');
+                        } else {
+                            h2.addClass('checked');
+                        }
+                    }
+                }
+            );
+        });
+    });
 </script>
 
 </html>
