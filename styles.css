@@ -61,6 +61,11 @@ h1 {
 	font-family: 'Righteous', cursive;
 	margin: 0;
 	padding: 0;
+	color: black;
+	text-decoration: none;
+}
+.title {
+	text-decoration: none;
 }
 hr {
 	margin: 1px;
@@ -87,6 +92,10 @@ h4 {
 	max-width: 500px;
 	text-align: center;
 }
+.msg .dlt {
+	background: #b97979;
+	color: #c52e1a;
+}
 
 /*---------------------- SECTION 2 --------------------*/
 
@@ -103,11 +112,13 @@ textarea {
 	width: 100%;
 	height: 100px;
 	resize: none;
+	font-size: 0.8rem;
 }
 input {
 	padding: 10px;
 	position: relative;
 	width: 100%;
+	font-size: 0.8rem;
 }
 
 .form-wrapper {
@@ -115,7 +126,10 @@ input {
 }
 
 .btn-add,
-.btn-update {
+.btn-update,
+.btn-reset,
+#btn-search,
+#btn-reset {
 	text-decoration: none;
 	padding: 10px;
 	font-size: 15px;
@@ -124,18 +138,62 @@ input {
 	border: none;
 	border-radius: 5px;
 	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 1);
+	text-align: center;
 }
-.btn-add {
+.btn-add,
+#btn-search {
 	background: goldenrod;
 	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 1);
 }
-.btn-add:active {
+.btn-add:active,
+#btn-search:active,
+#btn-reset:active,
+.btn-update:active {
 	transform: translateY(4px);
 	border: none;
+	text-decoration: none;
 }
 
-.btn-update {
-	background: rgb(199, 143, 40);
+.btn-add:hover,
+.btn-update:hover,
+#btn-reset:hover {
+	background-position: 100% 0;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	background-image: linear-gradient(
+		to right,
+		#f1d26b,
+		goldenrod,
+		goldenrod,
+		#f1d26b
+	);
+	box-shadow: 0 4px 15px 0 grey;
+}
+.btn-add:hover,
+#btn-search:hover {
+	background-position: 100% 0;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+	background-image: linear-gradient(
+		to right,
+		#a3a3a3,
+		rgb(59, 57, 54),
+		rgb(59, 57, 54),
+		#a3a3a3
+	);
+	box-shadow: 0 4px 15px 0 grey;
+}
+
+.btn-update,
+#btn-reset {
+	background: rgb(59, 57, 54);
+}
+#btn-reset {
+	margin-top: 10px;
 }
 
 /*---------------------- SECTION 3 --------------------*/
@@ -143,10 +201,9 @@ input {
 .container {
 	display: flex;
 	position: relative;
-	margin-top: 7px;
+	margin-top: 10px;
 	width: 100%;
-	min-height: 100px;
-	max-height: 200px;
+
 	box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 1);
 	transition: 0.55s linear;
 	border-radius: 0 15px 0 15px;
@@ -156,24 +213,27 @@ input {
 }
 
 #input-name {
-	font-size: 1rem;
-	font-weight: 700;
+	font-size: 0.8rem;
+	margin-top: 0.5rem;
+	margin-left: 1rem;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 
 #input-task {
-	font-size: 14px;
+	font-size: 0.8rem;
 }
 
 .container #input-date {
 	display: inline-block;
 	text-align: center;
-	font-size: 12px;
+	font-size: 0.7rem;
 	color: grey;
 }
 /*---------------------- SECTION 4 --------------------*/
 .del_btn {
 	background: maroon;
+	border-radius: 0px 0px 0px 15px;
 }
 .edit_btn {
 	float: right;
@@ -195,7 +255,7 @@ input {
 	width: 70px;
 	color: white;
 	z-index: 1;
-	height: 100px;
+	height: 3.5rem;
 	text-decoration: none;
 }
 .container:hover .button1 {
@@ -414,3 +474,4 @@ footer {
 		opacity: 1;
 	}
 }
+/*-----------------------------------*/

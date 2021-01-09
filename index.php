@@ -195,6 +195,18 @@ if (isset($_POST['search'])) {
             scrollTop: 0
         }, 800);
     });
+
+    //loader 
+    $('body').append('<div style="" id="loadingDiv"><div class="loader">Loading...</div></div>');
+    $(window).on('load', function() {
+        setTimeout(removeLoader); //wait for page load.
+    });
+    function removeLoader() {
+        $("#loadingDiv").fadeOut(500, function() {
+            // fadeOut complete. Remove the loading div
+            $("#loadingDiv").remove(); //makes page more lightweight 
+        });
+    }
 </script>
 
 
