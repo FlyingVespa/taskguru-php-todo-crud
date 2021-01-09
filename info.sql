@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Jan 08, 2021 at 12:17 PM
+-- Generation Time: Jan 09, 2021 at 12:56 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.19
 
@@ -40,8 +40,10 @@ CREATE TABLE `info` (
 --
 
 INSERT INTO `info` (`id`, `name`, `task`, `tdate`, `checkbox`) VALUES
-(118, 'asdasd', 'asdasd', '2021-01-06 22:48:22', 0),
-(120, 'aaaaaaaaa', 'aaaaaaaaaaaaaaaa', '2021-01-07 21:47:45', 0);
+(144, 'Car', 'Pick up car from airport. Rember to bring ID', '2021-01-09 01:49:58', 0),
+(145, 'Laundry', 'Seperate according to colour. Do not wash more than +50 C', '2021-01-09 01:50:32', 1),
+(146, 'Shopping', 'Do weekly shopping. Do not forget shopping bags.', '2021-01-09 01:51:09', 0),
+(147, 'Find New Insurance', 'Find a new policy that covers travel during COVID pandemic. Ensure flights are covered including med', '2021-01-09 01:52:03', 1);
 
 --
 -- Indexes for dumped tables
@@ -61,7 +63,7 @@ ALTER TABLE `info`
 -- AUTO_INCREMENT for table `info`
 --
 ALTER TABLE `info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
