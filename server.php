@@ -49,7 +49,6 @@ if (isset($_POST['update'])) {
 if (isset($_GET['del'])) {
     $id = $_GET['del'];
     mysqli_query($db, "DELETE FROM info WHERE id=$id");
-    $_SESSION['msgdelete'] = "Task $name had been deleted!";
-    header('location: index.php');
-}
+    $_SESSION['msgdelete'] = "Task has been deleted!";
+    header('location: index.php');} 
 
