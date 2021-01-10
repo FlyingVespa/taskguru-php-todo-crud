@@ -1,10 +1,12 @@
 <?php
 session_start();
+//mysql://bf34a474c5dc98:de0648cd@eu-cdbr-west-03.cleardb.net/heroku_0cbdd78e004ddfa?reconnect=true
 
-$servername = 'localhost:3307';
-$username = 'flyingvespa';
-$password = 'password';
-$databasename = 'crud';
+
+$servername = 'remotemysql.com';
+$username = 'oMgH0txL6H';
+$password = 'O5tPRMJ4oJ';
+$databasename = 'oMgH0txL6H';
 
 try {
     $db = mysqli_connect($servername, $username, $password, $databasename);
@@ -50,5 +52,5 @@ if (isset($_GET['del'])) {
     $id = $_GET['del'];
     mysqli_query($db, "DELETE FROM info WHERE id=$id");
     $_SESSION['msgdelete'] = "Task has been deleted!";
-    header('location: index.php');} 
-
+    header('location: index.php');
+}
